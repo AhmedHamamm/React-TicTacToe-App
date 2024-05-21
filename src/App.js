@@ -9,11 +9,11 @@ function Square({ value, onSquareClick }) {
     </button>
   );
 }
-// <----- Board Component ----->
-export default function Board() {
-  // <----- useState ----->
-  const [xIsNext, setXIsNext] = useState(true); // To be X always the first player
-  const [squares, setSquares] = useState(Array(9).fill(null));
+// <----- Board Function ----->
+function Board({ xIsNext, squares, onPlay }) {
+  // // <----- useState ----->
+  // const [xIsNext, setXIsNext] = useState(true);
+  // const [squares, setSquares] = useState(Array(9).fill(null));
   const winner = calcWinner(squares); // To show how is the winner
   let status; // winner status
   // This if condition for check we have winner or next player will play.
@@ -22,8 +22,7 @@ export default function Board() {
   } else {
     status = "Next player: " + (xIsNext ? "X" : "O"); // I used ternary operator To decied how is the next player. If xIsNext is true, the next player will be X, else it will be O. (xIsNext is true by default)
   }
-  // statenow :["null", "null","null" ....]
-  // nextSquares :["X", "null","null" ....] after This change it will change setSquares
+
   // <----- handelClick Function ----->
   function handleClick(i) {
     // This if condition for check if the squares empty or !empty and we have winner or not.
@@ -38,8 +37,9 @@ export default function Board() {
     } else {
       nextSquares[i] = "O";
     }
-    setXIsNext(!xIsNext); // To cahnge setState to be false.
-    setSquares(nextSquares); // it will change setSquares so the value will change to be "X" and will cahnge on Square function so the button value will change
+    // setXIsNext(!xIsNext); // To cahnge setState to be false.
+    // setSquares(nextSquares); // it will change setSquares so the value will change to be "X" and will cahnge on Square function so the button value will change
+    onPlay(nextSquares);
   }
   return (
     <>
@@ -66,6 +66,50 @@ export default function Board() {
     </>
   );
 }
+// <----- Game Component ----->
+export default function Game() {
+  // <----- useState ----->
+  const [xIsNext, setXIsNext] = useState(true); // To be X always the first player.
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [currentMove, setCurrentMove] = useState(0); // This for track of which step the user is currently viewing.
+  const currentSquares = history[history.length - 1];
+  // statenow :["null", "null","null" ....]
+  // nextSquares :["X", "null","null" ....] after This change it will change setSquares
+  function handlePlay(nextSquares) {
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
+    setXIsNext(!xIsNext); // To cahnge setState to be false.
+  }
+  function jumpTo(nextMove) {
+    setCurrentMove(nextMove);
+    setXIsNext(nextMove % 2 === 0);
+  }
+  const moves = history.map((squares, move) => {
+    let description;
+    if (move > 0) {
+      description = "Go to move #" + move;
+    } else {
+      description = "Go to game start";
+    }
+    return (
+      // This key move because each child in a list should have a uniqe 'Key' prop.
+      <li key={move}>
+        <button onClick={() => jumpTo(move)}>{description}</button>
+      </li>
+    );
+  });
+  return (
+    <div className="game">
+      <div className="game-board">
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+      </div>
+      <div className="game-info">
+        <ol>{moves}</ol>
+      </div>
+    </div>
+  );
+}
 // <----- Dedicate the winner function ----->
 function calcWinner(squares) {
   // this array for checks winning conditions
@@ -79,11 +123,12 @@ function calcWinner(squares) {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  // This for loop to loop every line in the Lines[] compare it.
+  // This for loop to loop every line in the Lines[] and compare it.
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }
   }
+  return null;
 }
