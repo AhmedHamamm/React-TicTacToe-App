@@ -69,21 +69,23 @@ function Board({ xIsNext, squares, onPlay }) {
 // <----- Game Component ----->
 export default function Game() {
   // <----- useState ----->
-  const [xIsNext, setXIsNext] = useState(true); // To be X always the first player.
+  // const [xIsNext, setXIsNext] = useState(true); // To be X always the first player.
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0); // This for track of which step the user is currently viewing.
-  const currentSquares = history[history.length - 1];
+  const xIsNext = currentMove % 2 === 0;
+  const currentSquares = history[currentMove];
+  // const currentSquares = history[history.length - 1];
   // statenow :["null", "null","null" ....]
   // nextSquares :["X", "null","null" ....] after This change it will change setSquares
   function handlePlay(nextSquares) {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
-    setXIsNext(!xIsNext); // To cahnge setState to be false.
+    // setXIsNext(!xIsNext); // To cahnge setState to be false.
   }
   function jumpTo(nextMove) {
     setCurrentMove(nextMove);
-    setXIsNext(nextMove % 2 === 0);
+    // setXIsNext(nextMove % 2 === 0);
   }
   const moves = history.map((squares, move) => {
     let description;
