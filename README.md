@@ -14,7 +14,6 @@ This project is a classic implementation of the Tic-Tac-Toe game built with mode
 - [Running the Game](#running-the-game)
 - [Screenshots](#screenshots)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Technologies Used
 
@@ -73,9 +72,6 @@ Contributions are welcome! If you'd like to contribute, please fork the reposito
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a pull request
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
