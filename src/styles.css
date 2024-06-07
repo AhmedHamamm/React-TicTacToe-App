@@ -6,14 +6,17 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: blue;
+  background-image: url(bg-image.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 #root {
   display: flex;
   flex-direction: row;
   width: auto;
   max-width: 1200px;
-  background-color: white;
+  background-color: whitesmoke;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -62,8 +65,7 @@ ul {
 }
 
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  border: 1px solid black;
   float: left;
   font-size: 24px;
   font-weight: bold;
@@ -90,13 +92,12 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-right: 2px solid #e0e0e0;
+  border-right: 2px solid #e0e0e000;
   padding: 20px;
 }
 .game-info {
   flex: 1;
   padding: 20px;
-  background-color: #fafafa;
   overflow-y: auto;
 }
 
@@ -123,5 +124,5 @@ ul {
 }
 
 .game-info button:hover {
-  background-color: #ddd;
+  background-color: bisque;
 }
