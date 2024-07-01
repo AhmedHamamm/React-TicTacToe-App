@@ -60,7 +60,7 @@ This will launch the development server and open the game in your default web br
 
 ## Screenshots
 
-![Tic-Tac-Toe Screenshot](./screenshots/game-screenshot.png)
+![Tic-Tac-Toe Screenshot](./Tic-Tac-Toe Game.png)
 
 ## Contributing
 
