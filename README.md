@@ -38,6 +38,7 @@ Tic-Tac-Toe is a two-player game where the players take turns marking spaces in 
 To run the Tic-Tac-Toe game locally, follow these steps:
 
 1. **Clone the repository**:
+
    ```sh
    git clone https://github.com/AhmedHamamm/React-TicTacToe-App.git
    cd tic-tac-toe
@@ -60,7 +61,7 @@ This will launch the development server and open the game in your default web br
 
 ## Screenshots
 
-![Tic-Tac-Toe Screenshot](./screenshots/game-screenshot.png)
+![Tic-Tac-Toe Screenshot](./Tic-Tac-Toe%20Game.png)
 
 ## Contributing
 
@@ -71,7 +72,6 @@ Contributions are welcome! If you'd like to contribute, please fork the reposito
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a pull request
-
 
 ---
 
